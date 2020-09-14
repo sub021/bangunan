@@ -10,6 +10,7 @@ class Transaksi extends CI_Controller {
             check_not_login();
             $this->load->model('barang_m');
             $this->load->model('transaksi_m');
+            $this->load->model('invoice_m');
         }
         public function index()
         {
@@ -22,47 +23,102 @@ class Transaksi extends CI_Controller {
                 $this->template->load('template/template','transaksi/transaksi_tabel',$data);
         }
 
-        public function tambah()
-        {
+public function simpan_keranjang()
+{
+    $jumlah=$this->input->post('jumlah');
+    if($jumlah >100 ){
+        $diskon=5;
+    } else {
+        $diskon=0;
+    }
+    $data=array(
+        'id'=>$this->input->post('id_barang'),
+        'name'=>$this->input->post('nama'),
+        'diskon'=>$diskon,
+        'qty'=>$this->input->post('jumlah'),
+        'price'=>$this->input->post('harga'),
+    );
+    $insert =$this->cart->insert($data);
+    echo json_encode(array("status" => TRUE));
+}
+public function cari()
+{
+        $data['title'] = 'Data Barang';
+        // $data['user'] = $this->db->get_where('user', array('username' => $this->session->userdata('username')))->row_array();
+        $kd_barang = $_GET['kode_barang'];
+        $cari = $this->transaksi_m->cari($kd_barang)->result();
+        echo json_encode($cari);
+}
 
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
-            if ($this->form_validation->run() == FALSE)
-            {
-                $this->db->select('*');
-                $this->db->from('tb_penjualan');
-                $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
-                $this->db->where('status',0);
-                $data['penjualan']=$this->db->get();
+public function selesai()
+{
+	$id_pelanggan = $this->input->post('id_pelanggan');
+	$kode_invoice = $this->input->post('kode_invoice');
+	$invoice=array(
+		'nama'=>$id_pelanggan,
+		'kode_invoice'=>$kode_invoice
+	);
+	$this->db->insert('tb_invoice',$invoice);
+	$id_invoice= $this->db->insert_id();
+
+	foreach ($this->cart->contents() as $items){
+        $id_barang=$items['id'];
+		$qty=$items['qty'];
+        $harga=$items['price'];
+        $diskon=$items['diskon'];
+        $total1=$qty * $harga;
+        $total=$total1-($total1*($diskon/100));
+		$data=array(
+			'id_invoice_p'=>$id_invoice,
+			'id_barang'=>$id_barang,
+            'jumlah'=>$qty,
+            'diskon'=>$diskon,
+			'total_penjualan'=>$total,
+		);
+		$this->db->insert('tb_penjualan',$data);
+    }
+    $this->cart->destroy();
+    $db=$this->invoice_m->cekkodebarang();
+            $nourut=substr($db,3,4);
+            $kodegen= $nourut + 1;
+            $data = array('kode_barang'=>$kodegen);
                 $data['data_barang']=$this->barang_m->get();
                 $data['data_pelanggan']=$this->db->get('tb_pelanggan');
-                
                 $this->template->load('template/template','transaksi/transaksi_data',$data);
-            } else{
-                
-                $data=[
-                    'id_barang' => $this->input->post('id_barang'),
-                    'jumlah' => $this->input->post('jumlah'),
-                    'id_pelanggan' => $this->input->post('id_pelanggan'),
+                echo json_encode(array("status" => TRUE));
+}
 
-                ];
-                $this->db->insert('tb_penjualan',$data);
-                redirect('transaksi/tambah');
-
-            }
+public function delete_cart()
+{
+	if($this->uri->segment(3))
+	{
+		$id=$this->uri->segment(3);
+		$this->cart->remove($id);
+		redirect('transaksi/tambah');
+	}
+}
+        public function tambah()
+        {
+            $db=$this->invoice_m->cekkodebarang();
+            $nourut=substr($db,3,4);
+            $kodegen= $nourut + 1;
+            $data = array('kode_barang'=>$kodegen);
+                $data['data_barang']=$this->barang_m->get();
+                $data['data_pelanggan']=$this->db->get('tb_pelanggan');
+                $this->template->load('template/template','transaksi/transaksi_data',$data);
                 
         }
-        public function tambah_barang()
-            {
-                $data=[
-                    'id_barang' => $this->input->post('id_barang'),
-                    'jumlah' => $this->input->post('jumlah'),
-                    'id_pelanggan' => $this->input->post('id_pelanggan'),
+        // public function tambah_barang()
+        //     {
+        //         $data=[
+        //             'id_barang' => $this->input->post('id_barang'),
+        //             'jumlah' => $this->input->post('jumlah'),
+        //             'id_pelanggan' => $this->input->post('id_pelanggan'),
 
-                ];
-                $this->db->insert('tb_penjualan',$data);
-                redirect('transaksi');
-            }
+        //         ];
+        //         $this->db->insert('tb_penjualan',$data);
+        //         redirect('transaksi');
+        //     }
 
             public function cancel()
             {
@@ -71,19 +127,19 @@ class Transaksi extends CI_Controller {
                 $this->db->delete('tb_penjualan');
                 redirect('Transaksi/tambah');
             }
-            public function selesai()
-            {
-                $db=$this->transaksi_m->cekkodebarang();
-                $nourut=substr($db,3,4);
-                $kodegen= $nourut + 1;
+            // public function selesai()
+            // {
+            //     $db=$this->transaksi_m->cekkodebarang();
+            //     $nourut=substr($db,3,4);
+            //     $kodegen= $nourut + 1;
                 
-                $update=[
-                    'status'=>1
-                ];
-                $this->db->where('status',0);
-                $this->db->update('tb_penjualan',$update);
-                redirect('Transaksi');
-            }
+            //     $update=[
+            //         'status'=>1
+            //     ];
+            //     $this->db->where('status',0);
+            //     $this->db->update('tb_penjualan',$update);
+            //     redirect('Transaksi');
+            // }
 
 
             public function laporan()
@@ -95,8 +151,8 @@ class Transaksi extends CI_Controller {
             {
                 $this->db->from('tb_penjualan');
                 $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
-                $this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
-                $this->db->where('status',1);
+                $this->db->join('tb_invoice','tb_invoice.id_invoice = tb_penjualan.id_invoice_p');
+                // $this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
                 $data['data_jual']=$this->db->get();
                 $this->load->view('transaksi/laporan',$data);
             }
@@ -109,16 +165,17 @@ class Transaksi extends CI_Controller {
             {
                 $tgl1=date('Y-m-d',strtotime($this->input->post('tanggal1')));
                 $tgl2=date('Y-m-d',strtotime($this->input->post('tanggal2')));
-                // $this->db->from('tb_penjualan');
-                // $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
+                $this->db->from('tb_penjualan');
+                $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
                 // $this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
-                // $this->db->where('tanggal BETWEEN "'.$tgl1.'"and"'.$tgl2.'"');
-                $data['data_jual']=$this->db->query("SELECT * FROM tb_penjualan,tb_barang,tb_pelanggan WHERE tb_barang.id_barang = tb_penjualan.id_barang 
-                AND tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan 
-                AND status = 1 and tanggal BETWEEN '".$tgl1."' and '".$tgl2."'");
+                $this->db->join('tb_invoice','tb_invoice.id_invoice = tb_penjualan.id_invoice_p');
+                $this->db->where('tgl_pemesanan BETWEEN "'.$tgl1.'"and"'.$tgl2.'"');
+                // $data['data_jual']=$this->db->query("SELECT * FROM tb_penjualan,tb_barang,tb_pelanggan WHERE tb_barang.id_barang = tb_penjualan.id_barang 
+                // AND tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan 
+                // AND status = 1 and tanggal BETWEEN '".$tgl1."' and '".$tgl2."'");
                 // $this->db->where('status',1);
                 // $this->db->where('tanggal BETWEEN',$tgl1);
-                // $data['data_jual']=$this->db->get();
+                $data['data_jual']=$this->db->get();
                 $this->load->view('transaksi/laporan',$data);
             }
     

@@ -15,7 +15,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <!-- <img src="<?php echo base_url() . '/uploads/' . $brg->gambar ?> " class="card-img-top"> -->
+                                <img src="<?php echo base_url() . 'assets/barang/' . $brg->gambar ?> " class="card-img-top">
                             </div>
 
                             <div class="col-md-8">
@@ -37,12 +37,16 @@
                                             </strong></td>
                                     </tr>
                                 </table>
+                                <?php if($brg->stok == 0){ ?>
+                        <button type="button" class="btn btn-sm btn-success" disabled>Tambah Ke Keranjang</button>
+                        <?php } else { ?>   
+                            <?php echo anchor(
+                            'keranjang/tambah_kekeranjang/' . $brg->id_barang,
+                            '<div class="btn btn-sm btn-success">Tambah Ke Keranjang </div>'
+                        ) ?>
+                        <?php } ?>
                                 <?php echo anchor(
-                                    'keranjang/tambah_kekeranjang/' . $brg->id_barang,
-                                    '<div class="btn btn-sm btn-success">Tambah Ke Keranjang </div>'
-                                ) ?>
-                                <?php echo anchor(
-                                    'keranjang/index/' . $brg->id_barang,
+                                    'home',
                                     '<div class="btn btn-sm btn-primary">Kembali </div>'
                                 ) ?>
                             </div>

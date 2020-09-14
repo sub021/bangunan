@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Barang</title>
+    <title>Laporan Pelanggan</title>
 </head>
 <link href="<?= base_url()?>assets/css/sb-admin-2.min.css" rel="stylesheet">
 <body onLoad="window.print()">
@@ -11,40 +11,36 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3 class="text-center">
-				Laporan Data Barang Keluar
+				Laporan Data Pelanggan
 			</h3>
             <br>
 			<table class="table table-bordered table-sm">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Kode Barang</th>
-						<th>Nama Barang</th>
-						<th>Qty</th>
-                        <th>Harga Jual</th>
-						<th>Diskon</th>
-						<th>Total</th>
+						<th>Kode Invoice</th>
+						<th>Nama Pelanggan</th>
+						<!-- <th>Tanggal</th>
+						<th>Harga Beli</th>
+						<th>qty</th>
+                        <th>Total</th>
+						<th>Nama Supplier</th> -->
                         
 					</tr>
 				</thead>
 				<tbody>
                 <?php
                     $n=1;
-                foreach ($data_barang_keluar->result() as $data) {
-					$jumlah=$data->jumlah;
-					$harga=	$data->harga_jual;
-					$diskon=$data->diskon;
-					$total=$jumlah * $harga;
-					$total1=$total-($total*($diskon/100));
-					?>
+                foreach ($data_invoice->result() as $data) {?>
 					<tr>
 						<td><?= $n++?>.</td>
-						<td><?= $data->kode_barang?></td>
-						<td><?= $data->nama_barang?></td>
-						<td><?= $data->jumlah?></td>
-                        <td><?= $data->harga_jual?></td>
-						<td><?= $data->diskon?>%</td>
-						<td><?= $total1?></td>
+						<td><?= $data->kode_invoice?></td>
+						<td><?= $data->nama?></td>
+						<!-- <td><?= $data->tanggal?></td>
+                        <td><?= $data->harga_beli?></td>
+						<td><?= $data->qty?></td>
+						<td><?= $data->total?></td>
+						<td><?= $data->nama_supplier?></td> -->
                         
 					</tr>
                     <?php }?>

@@ -18,7 +18,8 @@ class Keranjang extends CI_Controller
             'id'      => $barang->id_barang,
             'qty'     => 1,
             'price'   => $barang->harga_jual,
-            'name'    => $barang->nama_barang
+            'name'    => $barang->nama_barang,
+            'stok'     =>$barang->stok
 
         );
 
@@ -46,7 +47,11 @@ class Keranjang extends CI_Controller
         // $this->load->view('templates/sidebar');
         // $this->load->view('pembayaran');
         // $this->load->view('templates/footer');
-        $this->template->load('template/template_user','keranjang/pembayaran');
+        $db=$this->invoice_m->cekkodebarang();
+            $nourut=substr($db,3,4);
+            $kodegen= $nourut + 1;
+            $data = array('kode_barang'=>$kodegen);
+        $this->template->load('template/template_user','keranjang/pembayaran',$data);
     }
     public function proses_pesanan()
     {
@@ -68,5 +73,52 @@ class Keranjang extends CI_Controller
         // $this->load->view('detail_brg', $data);
         $this->template->load('template/template_user','keranjang/detail_keranjang', $data);
         // $this->load->view('templates/footer');
+    }
+
+
+    public function delete()
+    {
+        if ($this->uri->segment(3)) {
+
+            $id = $this->uri->segment(3);
+
+            $this->cart->remove($id);
+
+            redirect('keranjang/detail_keranjang');
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function update_keranjang()
+    {
+        if ($this->uri->segment(3)) {
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules('qty', 'Jumlah Pesanan', 'required|numeric');
+
+            if ($this->form_validation->run() == TRUE) {
+                $jumlah= $this->input->post('qty', TRUE);
+                if($jumlah>100){
+                    $diskon=5;
+                }else{
+                    $diskon=0;
+                }
+                $data = array(
+                    // 'qty' => $this->input->post('qty', TRUE),
+                    'qty' =>$jumlah,
+                    'diskon' => $diskon,
+                    'rowid' => $this->uri->segment(3)
+                );
+
+                $this->cart->update($data);
+
+                redirect('keranjang/detail_keranjang');
+            } else {
+                // $this->template->olshop('cart');
+            }
+        } else {
+            redirect('keranjang/detail_keranjang');
+        }
     }
 }

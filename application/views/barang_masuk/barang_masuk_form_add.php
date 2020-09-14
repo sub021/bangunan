@@ -41,17 +41,17 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="inputAddress">Harga Beli</label>
-                    <input type="number" class="form-control"  placeholder="Harga Beli" name="harga" require value="<?=set_value('harga')?>" id="harga">
+                    <input type="number" class="form-control" placeholder="Harga Beli" name="harga" require value="<?=set_value('harga')?>" id="satuan">
                     <?= form_error('harga')?>
                 </div>
                 <div class="form-group col-md col-xs">
                     <label for="inputAddress">Qty</label>
-                    <input type="text" class="form-control" id="qty" placeholder="Qty" name="qty" require value="<?=set_value('qty')?>">
+                    <input type="text" class="form-control" id="jumlah_barang" placeholder="Qty" name="qty" require value="<?=set_value('qty')?>">
                     <?= form_error('qty')?>
                  </div>
                 <div class="form-group col-md col-xs has-error">
                     <label for="inputEmail4">Total</label>
-                    <input type="number" class="form-control" id="total" name="total" value="<?=set_value('total')?>" require >
+                    <input type="number" class="form-control" id="total" name="total" readonly value="<?=set_value('total')?>" require >
                     <?= form_error('total')?>
                 </div>
                 <div class="form-group col-md col-xs">

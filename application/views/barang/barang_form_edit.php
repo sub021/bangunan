@@ -26,15 +26,20 @@
                 <?= form_error('nama')?>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6 has-error">
+                <!-- <div class="form-group col-md-6 has-error">
                 <label for="inputEmail4">Stok </label>
                 <input type="number" class="form-control" id="inputEmail4" name="stok" require value="<?=$row->stok?>">
                 <?= form_error('stok')?>
-                </div>
+                </div> -->
                 <div class="form-group col-md-6">
                 <label for="inputPassword4">Harga Jual</label>
                 <input type="number" class="form-control" id="inputPassword4" name="harga" require value="<?=$row->harga_jual?>">
                 <?= form_error('harga')?>
+            </div>
+            <div class="form-group col-md">
+                <label for="inputPassword4">Gambar</label>
+                <input type="file" class="form-control" id="" name="gambar" require >
+                <?= form_error('gambar')?>
             </div>
             </div>
             

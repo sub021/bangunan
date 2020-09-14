@@ -15,7 +15,7 @@
   <!-- Custom fonts for this template-->
   <link href="<?= base_url()?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" integrity="sha512-SUJFImtiT87gVCOXl3aGC00zfDl6ggYAw5+oheJvRJ8KBXZrr/TMISSdVJ5bBarbQDRC2pR5Kto3xTR0kpZInA==" crossorigin="anonymous" />
   <!-- Custom styles for this template-->
   <link href="<?= base_url()?>assets/css/sb-admin-2.min.css" rel="stylesheet">
   <link href="<?= base_url()?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -68,6 +68,11 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Data Supplier</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('barang')?>">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Data Barang</span></a>
+      </li>
       
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -77,11 +82,7 @@
         Kegiatan
       </div>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('barang')?>">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Data Barang</span></a>
-      </li>
+      
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -91,15 +92,20 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="<?= site_url('barang_keluar')?>">
           <i class="fas fa-fw fa-table"></i>
           <span>Data Barang Keluar</span></a>
-      </li>
+      </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('transaksi')?>">
+        <a class="nav-link" href="<?= site_url('transaksi/tambah')?>">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Transaksi</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('Invoice')?>">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Invoice</span></a>
       </li>
 
       <hr class="sidebar-divider">
@@ -117,7 +123,7 @@
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('barang/laporan')?>">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Data Barang</span></a>
+          <span>Data Stok Barang</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
@@ -131,19 +137,29 @@
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('barang_keluar/laporan')?>">
           <i class="fas fa-fw fa-table"></i>
-          <span>Data Barang Keluar</span></a>
+          <span>Transaksi Jual</span></a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="<?= site_url('transaksi/laporan_online')?>">
           <i class="fas fa-fw fa-table"></i>
           <span>Penjualan online</span></a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('transaksi/laporan')?>">
           <i class="fas fa-fw fa-table"></i>
           <span>Data Penjualan</span></a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('invoice/laporan')?>">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Data pelanggan sering beli</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('laba/laporan')?>">
+          <i class="fas fa-fw fa-table"></i>
+          <span>laporan Laba Rugi</span></a>
+      </li>
+      <!-- <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Data Pendapatan</span></a>
@@ -152,7 +168,7 @@
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Data Pengeluaran Keluar</span></a>
-      </li>
+      </li> -->
 
       <hr class="sidebar-divider">
 
@@ -294,6 +310,18 @@ $(document).ready(function() {
     $('#example').DataTable();
 
 } );
+</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#jumlah_barang, #satuan").keyup(function() {
+                var jumlah_barang = $("#jumlah_barang").val();
+                var jumlah = $("#satuan").val();
+
+                var total = parseInt(jumlah_barang) * parseInt(jumlah);
+                $("#total").val(total);
+            });
+        });
+        
 </script>
 </body>
 

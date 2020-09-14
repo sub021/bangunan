@@ -22,7 +22,7 @@ class Barang extends CI_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('kode_barang', 'Kode barang', 'required|is_unique[tb_barang.kode_barang]');
             $this->form_validation->set_rules('nama', 'Nama Barang', 'required');
-            $this->form_validation->set_rules('stok', 'Stok', 'required');
+            // $this->form_validation->set_rules('stok', 'Stok', 'required');
             $this->form_validation->set_rules('harga', 'Harga Jual', 'required');
             $this->form_validation->set_message('is_unique', '{field} telah di gunakan');
             $this->form_validation->set_message('required', '%s masih kosong silahkan isi');
@@ -61,7 +61,7 @@ class Barang extends CI_Controller {
             // $this->form_validation->set_rules('username', 'Username', 'required|callback_username_check');
             // $this->form_validation->set_rules('kode_barang', 'Kode barang', 'required|is_unique[tb_barang.kode_barang]');
             $this->form_validation->set_rules('nama', 'Nama Barang', 'required');
-            $this->form_validation->set_rules('stok', 'Stok', 'required');
+            // $this->form_validation->set_rules('stok', 'Stok', 'required');
             $this->form_validation->set_rules('harga', 'Harga Jual', 'required');
             $this->form_validation->set_message('is_unique', '{field} telah di gunakan');
             $this->form_validation->set_message('required', '%s masih kosong silahkan isi');

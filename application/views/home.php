@@ -32,16 +32,24 @@
             <?php foreach ($barang->result() as $brg) : ?>
 
                 <div class="card ml-3 mt-4" style="width: 16rem;">
-                    <!-- <img src="<?php echo base_url() . 'assets/uploads/' . $brg->gambar ?>" class="card-img-top" alt="..."> -->
+                    <img src="<?php echo base_url() . 'assets/barang/' . $brg->gambar ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title mb-1 "><?php echo $brg->nama_barang ?></h5>
-                        <small><?php echo $brg->stok?></small> <br>
+                         <?php if($brg->stok == 0){ ?>
+                            <small>Sisa Stok:Habis</small> <br>
+                        <?php } else { ?>
+                            <small>Sisa Stok:<?php echo $brg->stok ?></small> <br>
+                        <?php } ?> <br>
                         <span class="badge badge-pill badge-danger mb-3">Rp.<?php echo number_format($brg->harga_jual, 0, ',', '.') ?></span>
                         <br>
-                        <?php echo anchor(
+                        <?php if($brg->stok == 0){ ?>
+                        <button type="button" class="btn btn-sm btn-success" disabled>Tambah Ke Keranjang</button>
+                        <?php } else { ?>   
+                            <?php echo anchor(
                             'keranjang/tambah_kekeranjang/' . $brg->id_barang,
                             '<div class="btn btn-sm btn-success">Tambah Ke Keranjang </div>'
                         ) ?>
+                        <?php } ?>
                         <?php echo anchor(
                             'keranjang/detail/' . $brg->id_barang,
                             '<div class="btn btn-sm btn-warning">Detail </div>'

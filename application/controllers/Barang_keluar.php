@@ -124,7 +124,11 @@ class Barang_keluar extends CI_Controller {
 
         public function cetak()
         {
-            $data['data_barang_keluar'] = $this->barang_keluar_m->get();
+            $this->db->from('tb_penjualan');
+                $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
+                $this->db->join('tb_invoice','tb_invoice.id_invoice = tb_penjualan.id_invoice_p');
+            $data['data_barang_keluar'] = $this->db->get();
+
             $this->load->view('barang_keluar/laporan',$data);
         }
 

@@ -2,13 +2,13 @@
 
 <div class="card">
   <div class="card-header">
-    Laporan Data transaksi
+    Laporan Data Barang Masuk
   </div>
   <div class="card-body">
-    <h5 class="card-title">Laporan Data transaksi</h5>
-    <a href="<?= site_url("barang_Keluar/cetak")?>" target="__blank" class="btn btn-primary btn-sm">Cetak Seluruh transaksi</a>
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalTanggal">
-  Cetak Laporan Berdasarkan Tanggal</button>
+    <h5 class="card-title">Laporan Data Laba</h5>
+    <a href="<?= site_url("laba/cetak")?>" target="__blank" class="btn btn-primary btn-sm">Cetak Laba</a>
+    <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalTanggal">
+  Cetak Laporan Berdasarkan Tanggal</button> -->
   </div>
 </div>
 </div>
@@ -25,7 +25,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('barang_Keluar/cetak2')?>" method="post">
+        <form action="<?= base_url('laba/cetak2')?>" method="post">
         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
         <div class="container">
           <div class="row">

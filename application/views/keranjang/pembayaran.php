@@ -29,6 +29,7 @@
 
                 <form method="post" action="<?php echo base_url() ?>keranjang/proses_pesanan">
                 <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
+                <input type="hidden" class="form-control" id="kode_invoice" name="kode_invoice" readonly value="KI<?= sprintf("%04s",$kode_barang)?>">
                     <div class="form-group">
                         <label>Nama Lengkap</label>
                         <input type="text" name="nama" placeholder="Masukkan nama lengkap anda.." class="form-control">
@@ -44,13 +45,13 @@
                         <input type="text" name="no_telp" placeholder="Masukkan no telepon/hp anda.." class="form-control">
                     </div>
 
-                    <div class=" form-group">
+                    <!-- <div class=" form-group">
                         <label>Pilih Metode Pembayaran</label>
                         <select class="form-control">
                             <option>COD (ambil barang di Toko)</option>
                             <option>TRANSFER BRI- 414214232 (a.n Toko)</option>
                         </select>
-                    </div>
+                    </div> -->
 
                     <button type=" submit" class="btn btn-sm btn-primary mb-3">Pesan</button>
 
