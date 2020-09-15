@@ -123,21 +123,21 @@
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('barang/laporan')?>">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Data Stok Barang</span></a>
+          <span>Stok Barang</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('barang_masuk/laporan')?>">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Data Barang Masuk</span></a>
+          <span>Barang Masuk</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('barang_keluar/laporan')?>">
           <i class="fas fa-fw fa-table"></i>
-          <span>Transaksi Jual</span></a>
+          <span>Penjualan Offline</span></a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link" href="<?= site_url('transaksi/laporan_online')?>">
@@ -147,12 +147,12 @@
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('transaksi/laporan')?>">
           <i class="fas fa-fw fa-table"></i>
-          <span>Data Penjualan</span></a>
+          <span>Penjualan Online</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('invoice/laporan')?>">
           <i class="fas fa-fw fa-table"></i>
-          <span>Data pelanggan sering beli</span></a>
+          <span>Data pelanggan Favorit</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('laba/laporan')?>">

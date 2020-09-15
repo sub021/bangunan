@@ -7,8 +7,8 @@
   <div class="card-body">
     <h5 class="card-title">Laporan Data Laba</h5>
     <a href="<?= site_url("laba/cetak")?>" target="__blank" class="btn btn-primary btn-sm">Cetak Laba</a>
-    <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalTanggal">
-  Cetak Laporan Berdasarkan Tanggal</button> -->
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalTanggal">
+  Cetak Laporan Berdasarkan Tanggal</button>
   </div>
 </div>
 </div>
@@ -31,12 +31,37 @@
           <div class="row">
             <div class="form-group col-sm ">
               <label for="">Dari Tanggal</label>
-              <input type="date" name="tanggal1" id="" class="form-control">
+              <div class="form-row">
+              <!-- <input type="date" name="tanggal1" id="" class="form-control"> -->
+              <select name="bulan" class="form-control">
+                <option value="01">Januari</option>
+                <option value="02">Februari</option>
+                <option value="03">Maret</option>
+                <option value="04">April</option>
+                <option value="05">Mei</option>
+                <option value="06">Juni</option>
+                <option value="07">Juli</option>
+                <option value="08">Agustus</option>
+                <option value="09">September</option>
+                <option value="10">Oktober</option>
+                <option value="12">November</option>
+                <option value="12">Desember</option>
+                </select>
+                <br>
+                <select name="tahun" class="form-control">
+                <?php foreach($tahun->result() as $t){
+                  $data=explode('-',$t->tgl_pemesanan);
+                  $tahun=$data[0];
+                  ?>
+                <option value="<?=$tahun?>"><?= $tahun; ?></option>
+                <?php } ?>
+                </select>
+                </div>
             </div>
-            <div class="form-group col-sm">
+            <!-- <div class="form-group col-sm">
               <label for="">Ke Tanggal</label>
               <input type="date" name="tanggal2" id="" class="form-control">
-            </div>
+            </div> -->
           </div>
           </div>
       </div>

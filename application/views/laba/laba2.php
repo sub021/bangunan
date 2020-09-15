@@ -35,6 +35,8 @@ function rupiah($angka)
     <br>
     <div style="text-align: center;">
         <font size="4"><b><u>LAPORAN LABA / RUGI</u></b></font><br>
+        <?php $bulan1=date('M',strtotime($bulan)); ?>
+        <font size="4"><b>Periode Bulan <?= $bulan; ?>/<?= $tahun; ?></b></font><br>
     </div>
     <br>
 <!--  -->

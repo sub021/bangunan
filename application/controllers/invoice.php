@@ -32,9 +32,10 @@ class Invoice extends CI_Controller {
         {
             // $id=$this->uri->segment(3);
             // $data['data']=$this->invoice_m->get_id($id);
-            $this->db->from('tb_invoice');
-            $this->db->order_by('nama');
-            $data['data_invoice'] = $this->db->get();
+            $query=$this->db->query("SELECT nama, count(nama) as jumlah FROM tb_invoice GROUP BY nama ORDER BY jumlah DESC");
+            // $this->db->from('tb_invoice');
+            // $this->db->order_by('nama');
+            $data['data_invoice'] = $query;
             $this->load->view('invoice/cetak',$data);
         }
 

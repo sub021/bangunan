@@ -30,7 +30,7 @@
                     $n=1;
                 foreach ($data_jual->result() as $data) {
                         $total=$data->jumlah * $data->harga_jual;
-                    
+						$total_ar[]=$total;
                     ?>
 					<tr>
 						<td><?= $n++?>.</td>
@@ -43,6 +43,12 @@
 					</tr>
                     <?php }?>
 				</tbody>
+				<tfoot>
+
+                <tr>
+                    <td colspan="5" style="text-align:center;"><b>Total</b></td>
+                    <td><b><?php echo 'Rp ' . number_format($total = array_sum($total_ar)); ?></b></td>
+                </tr>
 			</table>
 		</div>
 	</div>

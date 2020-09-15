@@ -127,6 +127,7 @@ class Barang_keluar extends CI_Controller {
             $this->db->from('tb_penjualan');
                 $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
                 $this->db->join('tb_invoice','tb_invoice.id_invoice = tb_penjualan.id_invoice_p');
+                $this->db->where('ket_ol','offline');
             $data['data_barang_keluar'] = $this->db->get();
 
             $this->load->view('barang_keluar/laporan',$data);
@@ -138,6 +139,7 @@ class Barang_keluar extends CI_Controller {
             $tgl2=date('Y-m-d',strtotime($this->input->post('tanggal2')));
             $this->db->from('tb_barang_keluar');
             $this->db->join('tb_barang','tb_barang.id_barang = tb_barang_keluar.id_barang');
+            $this->db->where('ket_ol','offline');
             $this->db->where('tanggal BETWEEN"'.$tgl1.'"and"'.$tgl2.'"');
             $data['data_barang_keluar']=$this->db->get();
             $this->load->view('barang_keluar/laporan',$data);

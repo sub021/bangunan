@@ -11,15 +11,16 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3 class="text-center">
-				Laporan Data Pelanggan
+				Laporan Pelanggan Favorit
 			</h3>
             <br>
 			<table class="table table-bordered table-sm">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Kode Invoice</th>
+						<!-- <th>Kode Invoice</th> -->
 						<th>Nama Pelanggan</th>
+						<th>Transaksi</th>
 						<!-- <th>Tanggal</th>
 						<th>Harga Beli</th>
 						<th>qty</th>
@@ -34,8 +35,9 @@
                 foreach ($data_invoice->result() as $data) {?>
 					<tr>
 						<td><?= $n++?>.</td>
-						<td><?= $data->kode_invoice?></td>
+						<!-- <td><?= $data->kode_invoice?></td> -->
 						<td><?= $data->nama?></td>
+						<td><?= $data->jumlah?></td>
 						<!-- <td><?= $data->tanggal?></td>
                         <td><?= $data->harga_beli?></td>
 						<td><?= $data->qty?></td>

@@ -56,7 +56,8 @@ public function selesai()
 	$kode_invoice = $this->input->post('kode_invoice');
 	$invoice=array(
 		'nama'=>$id_pelanggan,
-		'kode_invoice'=>$kode_invoice
+        'kode_invoice'=>$kode_invoice,
+        'ket_on'=>'offline'
 	);
 	$this->db->insert('tb_invoice',$invoice);
 	$id_invoice= $this->db->insert_id();
@@ -152,6 +153,7 @@ public function delete_cart()
                 $this->db->from('tb_penjualan');
                 $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
                 $this->db->join('tb_invoice','tb_invoice.id_invoice = tb_penjualan.id_invoice_p');
+                $this->db->where('ket_ol','online');
                 // $this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
                 $data['data_jual']=$this->db->get();
                 $this->load->view('transaksi/laporan',$data);
@@ -169,6 +171,7 @@ public function delete_cart()
                 $this->db->join('tb_barang','tb_barang.id_barang = tb_penjualan.id_barang');
                 // $this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
                 $this->db->join('tb_invoice','tb_invoice.id_invoice = tb_penjualan.id_invoice_p');
+                $this->db->where('ket_ol','online');
                 $this->db->where('tgl_pemesanan BETWEEN "'.$tgl1.'"and"'.$tgl2.'"');
                 // $data['data_jual']=$this->db->query("SELECT * FROM tb_penjualan,tb_barang,tb_pelanggan WHERE tb_barang.id_barang = tb_penjualan.id_barang 
                 // AND tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan 

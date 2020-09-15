@@ -31,7 +31,9 @@
 				<tbody>
                 <?php
                     $n=1;
-                foreach ($data_barang_masuk->result() as $data) {?>
+                foreach ($data_barang_masuk->result() as $data) {
+					
+					?>
 					<tr>
 						<td><?= $n++?>.</td>
 						<td><?= $data->kode_barang?></td>

@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3 class="text-center">
-				Laporan Data Barang Keluar
+				Laporan Penjualan Offline
 			</h3>
             <br>
 			<table class="table table-bordered table-sm">
@@ -36,19 +36,27 @@
 					$diskon=$data->diskon;
 					$total=$jumlah * $harga;
 					$total1=$total-($total*($diskon/100));
+					$total_ar[]=$total1
 					?>
 					<tr>
 						<td><?= $n++?>.</td>
 						<td><?= $data->kode_barang?></td>
 						<td><?= $data->nama_barang?></td>
 						<td><?= $data->jumlah?></td>
-                        <td><?= $data->harga_jual?></td>
+                        <td><?= 'Rp ' . number_format($data->harga_jual)?></td>
 						<td><?= $data->diskon?>%</td>
-						<td><?= $total1?></td>
+						<td><?= 'Rp ' . number_format($total1)?></td>
                         
 					</tr>
                     <?php }?>
 				</tbody>
+				<tfoot>
+
+                <tr>
+                    <td colspan="6" style="text-align:center;"><b>Total</b></td>
+                    <td ><b><?php echo 'Rp ' . number_format($total = array_sum($total_ar)); ?></b></td>
+                </tr>
+            </tfoot>
 			</table>
 		</div>
 	</div>
