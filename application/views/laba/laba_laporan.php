@@ -30,10 +30,10 @@
         <div class="container">
           <div class="row">
             <div class="form-group col-sm ">
-              <label for="">Dari Tanggal</label>
+              <label for="">Dari Periode</label>
               <div class="form-row">
               <!-- <input type="date" name="tanggal1" id="" class="form-control"> -->
-              <select name="bulan" class="form-control">
+              <select name="bulan" class="form-control col-md">
                 <option value="01">Januari</option>
                 <option value="02">Februari</option>
                 <option value="03">Maret</option>
@@ -48,7 +48,7 @@
                 <option value="12">Desember</option>
                 </select>
                 <br>
-                <select name="tahun" class="form-control">
+                <select name="tahun" class="form-control col-md">
                 <?php foreach($tahun->result() as $t){
                   $data=explode('-',$t->tgl_pemesanan);
                   $tahun=$data[0];

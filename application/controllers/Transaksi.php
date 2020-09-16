@@ -57,7 +57,7 @@ public function selesai()
 	$invoice=array(
 		'nama'=>$id_pelanggan,
         'kode_invoice'=>$kode_invoice,
-        'ket_on'=>'offline'
+        
 	);
 	$this->db->insert('tb_invoice',$invoice);
 	$id_invoice= $this->db->insert_id();
@@ -74,7 +74,8 @@ public function selesai()
 			'id_barang'=>$id_barang,
             'jumlah'=>$qty,
             'diskon'=>$diskon,
-			'total_penjualan'=>$total,
+            'total_penjualan'=>$total,
+            'ket_ol'=>'offline'
 		);
 		$this->db->insert('tb_penjualan',$data);
     }
