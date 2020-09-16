@@ -62,6 +62,12 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Data Admin</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('Invoice')?>">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Pelanggan</span></a>
+      </li>
+
       <?php } ?>
       <li class="nav-item">
         <a class="nav-link" href="<?= site_url('supplier')?>">

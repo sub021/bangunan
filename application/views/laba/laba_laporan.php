@@ -8,7 +8,7 @@
     <h5 class="card-title">Laporan Data Laba</h5>
     <a href="<?= site_url("laba/cetak")?>" target="__blank" class="btn btn-primary btn-sm">Cetak Laba</a>
     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalTanggal">
-  Cetak Laporan Berdasarkan Tanggal</button>
+  Cetak Laporan Berdasarkan Periode</button>
   </div>
 </div>
 </div>
@@ -19,7 +19,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalTanggalLabel">Laporan Berdasarkan Tanggal</h5>
+        <h5 class="modal-title" id="ModalTanggalLabel">Laporan Berdasarkan Periode</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

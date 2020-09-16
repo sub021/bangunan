@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 14 Sep 2020 pada 08.28
+-- Generation Time: 15 Sep 2020 pada 10.16
 -- Versi Server: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -98,14 +98,14 @@ CREATE TABLE `tb_barang_masuk` (
   `qty` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL,
   `tanggal` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tgl_masuk` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_barang_masuk`
 --
 
-INSERT INTO `tb_barang_masuk` (`id_masuk`, `id_barang`, `id_supplier`, `harga_beli`, `qty`, `total`, `tanggal`, `created_at`) VALUES
+INSERT INTO `tb_barang_masuk` (`id_masuk`, `id_barang`, `id_supplier`, `harga_beli`, `qty`, `total`, `tanggal`, `tgl_masuk`) VALUES
 (1, 6, 1, 5000, 10, 50000, '2020-09-14', '2020-09-14 13:07:48');
 
 --
@@ -195,6 +195,7 @@ CREATE TABLE `tb_penjualan` (
   `jumlah` varchar(20) NOT NULL,
   `diskon` varchar(4) DEFAULT '0',
   `total_penjualan` varchar(255) NOT NULL,
+  `ket_ol` varchar(30) NOT NULL DEFAULT 'online',
   `tgl_pemesanan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -202,10 +203,10 @@ CREATE TABLE `tb_penjualan` (
 -- Dumping data untuk tabel `tb_penjualan`
 --
 
-INSERT INTO `tb_penjualan` (`id_jual`, `id_barang`, `id_invoice_p`, `jumlah`, `diskon`, `total_penjualan`, `tgl_pemesanan`) VALUES
-(1, 6, 10, '2', '0', '20000', '2020-09-13 21:55:00'),
-(2, 6, 11, '3', '0', '30000', '2020-09-14 13:04:25'),
-(3, 6, 12, '1', '0', '10000', '2020-09-14 13:08:01');
+INSERT INTO `tb_penjualan` (`id_jual`, `id_barang`, `id_invoice_p`, `jumlah`, `diskon`, `total_penjualan`, `ket_ol`, `tgl_pemesanan`) VALUES
+(1, 6, 10, '2', '0', '20000', 'offline', '2020-09-13 21:55:00'),
+(2, 6, 11, '3', '0', '30000', 'online', '2020-09-14 13:04:25'),
+(3, 6, 12, '1', '0', '10000', 'online', '2020-09-14 13:08:01');
 
 --
 -- Trigger `tb_penjualan`
