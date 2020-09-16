@@ -16,6 +16,7 @@
                                 <th >No</th>
                                 <th>Kode Invoice</th>
                                 <th >Nama Pemesanan</th>
+                                <th>ket</th>
                                 <th >Aksi</th>
  
                             </tr>
@@ -30,7 +31,7 @@
                                 <td><?=$no++?></td>
                                 <td><?=$data->kode_invoice?></td>
                                 <td><?=$data->nama?></td>
-                                
+                                <td><?= $data->jasa; ?></td>
                                 
                                 <td>
                                  <a href="<?= site_url('invoice/nota/'.$data->id_invoice)?>" class="btn btn-primary btn-xs " target="_blank"><i class="fas fa-print fa-sm"></i></a>

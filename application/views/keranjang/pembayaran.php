@@ -44,6 +44,14 @@
                         <label>No Telepon/hp</label>
                         <input type="text" name="no_telp" placeholder="Masukkan no telepon/hp anda.." class="form-control">
                     </div>
+                    <div class=" form-group">
+                        <label>Jasa Antar</label>
+                        <select name="jasa" id="" class="form-control">
+                            <option value="ambil">Ambil Sendiri</option>
+                            <option value="antar">Jasa Antar</option>
+                        </select>
+                        
+                    </div>
 
                     <!-- <div class=" form-group">
                         <label>Pilih Metode Pembayaran</label>

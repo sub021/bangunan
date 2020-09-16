@@ -20,6 +20,7 @@ public function login_user($post)
         $this->db->from("tb_pelanggan");
         $this->db->where('username', $post['username']);
         $this->db->where('password', md5($post['password']));
+        $this->db->where('status','konfirmasi');
         $query=$this->db->get();
         return $query;
 

@@ -63,7 +63,7 @@
           <span>Data Admin</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('Invoice')?>">
+        <a class="nav-link" href="<?= site_url('pelanggan')?>">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Pelanggan</span></a>
       </li>

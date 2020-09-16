@@ -8,11 +8,13 @@ class Invoice_m extends CI_Model
         $nama = $this->input->post('nama');
         $alamat = $this->input->post('alamat');
         $kode_invoice = $this->input->post('kode_invoice');
+        $jasa=$this->input->post('jasa');
 
         $invoice = array(
             'kode_invoice' => $kode_invoice,
             'nama' => $nama,
             'alamat' => $alamat,
+            'jasa'=>$jasa,
             'tgl_pesan' => date('Y-m-d'),
             'batas_byr' => date('Y-m-d', mktime(
                 date('H'),
