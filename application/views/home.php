@@ -42,7 +42,7 @@
                         <?php } ?> <br>
                         <span class="badge badge-pill badge-danger mb-3">Rp.<?php echo number_format($brg->harga_jual, 0, ',', '.') ?></span>
                         <br>
-                        <?php if($brg->stok == 0){ ?>
+                        <?php if($brg->stok <= 0){ ?>
                         <button type="button" class="btn btn-sm btn-success" disabled>Tambah Ke Keranjang</button>
                         <?php } else { ?>   
                             <?php echo anchor(

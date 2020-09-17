@@ -55,7 +55,8 @@ class Keranjang extends CI_Controller
     }
     public function proses_pesanan()
     {
-        $is_processed = $this->invoice_m->index();
+        $post=$this->input->post(null,TRUE);
+        $is_processed = $this->invoice_m->add($post);
         if ($is_processed) {
             $this->cart->destroy();
   

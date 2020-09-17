@@ -26,18 +26,22 @@
 
                 <h3>Input Alamat Pengiriman dan Pembayaran</h3>
                 <br>
-
-                <form method="post" action="<?php echo base_url() ?>keranjang/proses_pesanan">
-                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
-                <input type="hidden" class="form-control" id="kode_invoice" name="kode_invoice" readonly value="KI<?= sprintf("%04s",$kode_barang)?>">
+                    
+                <form method="post" action="<?php echo base_url() ?>keranjang/proses_pesanan" enctype="multipart/form-data">
+                <!-- <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none"> -->
+                <div class="form-group">
+                        <label>Kode Invoice</label>
+                        <input type="text" class="form-control" id="kode_invoice" name="kode_invoice" readonly value="KI<?= sprintf("%04s",$kode_barang)?>">
+                    </div>
+                
                     <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <input type="text" name="nama" placeholder="Masukkan nama lengkap anda.." class="form-control">
+                        <input type="text" name="nama" placeholder="Masukkan nama lengkap anda.." class="form-control" value="<?= $this->session->userdata('nama')?>" readonly>
                     </div>
 
                     <div class="form-group">
                         <label>Alamat Lengkap</label>
-                        <input type="text" name="alamat" placeholder="Masukkan lengkap alamat anda.." class="form-control">
+                        <input type="text" name="alamat" placeholder="Masukkan lengkap alamat anda.." class="form-control" value="<?= $this->session->userdata('alamat')?>">
                     </div>
 
                     <div class=" form-group">
@@ -50,8 +54,16 @@
                             <option value="ambil">Ambil Sendiri</option>
                             <option value="antar">Jasa Antar</option>
                         </select>
-                        
                     </div>
+                    <div class=" form-group">
+                        <label>Keterangan</label>
+                        <input type="text" name="keterangan" placeholder="keterangan" class="form-control">
+                    </div>
+                    <div class="form-group col-md">
+                <label for="inputPassword4">Uplod Bukti</label>
+                <input type="file" class="form-control" id="" name="gambar" require >
+                <?= form_error('gambar')?>
+            </div>
 
                     <!-- <div class=" form-group">
                         <label>Pilih Metode Pembayaran</label>

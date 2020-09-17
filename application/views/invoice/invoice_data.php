@@ -17,6 +17,7 @@
                                 <th>Kode Invoice</th>
                                 <th >Nama Pemesanan</th>
                                 <th>ket</th>
+                                <th>Status Pesanan</th>
                                 <th >Aksi</th>
  
                             </tr>
@@ -32,7 +33,86 @@
                                 <td><?=$data->kode_invoice?></td>
                                 <td><?=$data->nama?></td>
                                 <td><?= $data->jasa; ?></td>
-                                
+                                <td><?php $status = $data->status_pesanan ?>
+                                      <?php if ($status == "diproses") : ?>
+                                          <div class="input-group-btn">
+                                              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">diproses
+                                                  <!-- <span class="fa fa-caret-down"></span> -->
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                  <li><a href="<?php echo site_url("invoice/diproses/"); ?><?php echo $data->id_invoice ?>">Diproses</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/disiapkan/"); ?><?php echo $data->id_invoice ?>">Disiapkan</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/dikirim/"); ?><?php echo $data->id_invoice ?>">Dikirim</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/diambil/"); ?><?php echo $data->id_invoice ?>">Diambil</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/selesai/"); ?><?php echo $data->id_invoice ?>">selesai</a></li>
+
+                                              </ul>
+                                          </div>
+
+                                      <?php elseif ($status == "disiapkan") : ?>
+                                          <div class="input-group-btn">
+                                              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Disiapkan
+                                                  <!-- <span class="fa fa-caret-down"></span>-->
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                  <li><a href="<?php echo site_url("invoice/diproses/"); ?><?php echo $data->id_invoice ?>">Diproses</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/disiapkan/"); ?><?php echo $data->id_invoice ?>">Disiapkan</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/dikirim/"); ?><?php echo $data->id_invoice ?>">Dikirim</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/diambil/"); ?><?php echo $data->id_invoice ?>">Diambil</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/selesai/"); ?><?php echo $data->id_invoice ?>">selesai</a></li>
+
+                                              </ul>
+                                          </div>
+                                          <?php elseif ($status == "dikirim") : ?>
+                                          <div class="input-group-btn">
+                                              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Dikirim
+                                                  <!-- <span class="fa fa-caret-down"></span>-->
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                  <li><a href="<?php echo site_url("invoice/diproses/"); ?><?php echo $data->id_invoice ?>">Diproses</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/disiapkan/"); ?><?php echo $data->id_invoice ?>">Disiapkan</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/dikirim/"); ?><?php echo $data->id_invoice ?>">Dikirim</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/diambil/"); ?><?php echo $data->id_invoice ?>">Diambil</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/selesai/"); ?><?php echo $data->id_invoice ?>">selesai</a></li>
+
+                                              </ul>
+                                          </div>
+                                          <?php elseif ($status == "diambil") : ?>
+                                          <div class="input-group-btn">
+                                              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Diambil
+                                                  <!-- <span class="fa fa-caret-down"></span>-->
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                  <li><a href="<?php echo site_url("invoice/diproses/"); ?><?php echo $data->id_invoice ?>">Diproses</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/disiapkan/"); ?><?php echo $data->id_invoice ?>">Disiapkan</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/dikirim/"); ?><?php echo $data->id_invoice ?>">Dikirim</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/diambil/"); ?><?php echo $data->id_invoice ?>">Diambil</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/selesai/"); ?><?php echo $data->id_invoice ?>">selesai</a></li>
+
+                                              </ul>
+                                          </div>
+                                          <?php elseif ($status == "selesai") : ?>
+                                          <div class="input-group-btn">
+                                              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Selesai
+                                                  <!-- <span class="fa fa-caret-down"></span>-->
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                  <li><a href="<?php echo site_url("invoice/diproses/"); ?><?php echo $data->id_invoice ?>">Diproses</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/disiapkan/"); ?><?php echo $data->id_invoice ?>">Disiapkan</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/dikirim/"); ?><?php echo $data->id_invoice ?>">Dikirim</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/diambil/"); ?><?php echo $data->id_invoice ?>">Diambil</a></li>
+                                                  <li><a href="<?php echo site_url("invoice/selesai/"); ?><?php echo $data->id_invoice ?>">selesai</a></li>
+
+                                              </ul>
+                                          </div>
+                                      <?php endif; ?>
+
+
+
+
+
+
+
                                 <td>
                                  <a href="<?= site_url('invoice/nota/'.$data->id_invoice)?>" class="btn btn-primary btn-xs " target="_blank"><i class="fas fa-print fa-sm"></i></a>
                                 

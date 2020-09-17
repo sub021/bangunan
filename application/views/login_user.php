@@ -10,15 +10,25 @@
         <link href="<?= base_url();?>assets/css/styles.css" rel="stylesheet" />
         <script src="<?= base_url(); ?>assets/vendor/fontawesome-free/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <style type="text/css">
+  
+  body {
+    background: rgba(0, 0, 0, .3) url('<?php echo base_url();?>assets/bg.jpg');
+     background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: static;
+  }
+</style>
+    <body class="">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-5">
+                            <div class="col-lg-8">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login User</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Selamat Datang Ditoko Bangunan</h3></div>
                                     <div class="card-body">
                                         <form action="<?= site_url('auth/proses_user') ?>" method="post">
                                             <div class="form-group">
@@ -30,16 +40,16 @@
                                                 <label class="small mb-1" for="inputPassword">Password</label>
                                                 <input class="form-control py-4" id="Password" type="password" name="password" placeholder="Enter password" />
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
                                                     <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 
                                                 <button type="submit" class="btn btn-primary" name="login" >Login</button>
-                                                <a href="<?= site_url('auth/daftar_user')?>" class="">Daftar pengguan baru</a>
+                                                <a href="<?= site_url('auth/daftar_user')?>" class="">silahkan daftar member baru</a>
                                             </div>
                                         </form>
                                     </div>

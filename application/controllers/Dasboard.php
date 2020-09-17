@@ -16,5 +16,6 @@ class Dasboard extends CI_Controller {
 		$this->template->load('template/template','dasboard',$x);
 	}
 
+	
 
 }

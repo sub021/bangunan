@@ -39,4 +39,54 @@ class Invoice extends CI_Controller {
             $this->load->view('invoice/cetak',$data);
         }
 
+        public function diproses($id)
+        {
+            $data=array(
+                'status_pesanan'=>"diproses"
+            );
+            $this->invoice_m->update($id, $data);
+            // $this->session->set_flashdata('message','Supplier telah DiBlokir');
+            redirect(site_url('invoice'));
+        }
+
+        public function disiapkan($id)
+        {
+            $data=array(
+                'status_pesanan'=>"disiapkan"
+            );
+            $this->invoice_m->update($id, $data);
+            // $this->session->set_flashdata('message','Supplier telah DiBlokir');
+            redirect(site_url('invoice'));
+        }
+
+        public function dikirim($id)
+        {
+            $data=array(
+                'status_pesanan'=>"dikirim"
+            );
+            $this->invoice_m->update($id, $data);
+            // $this->session->set_flashdata('message','Supplier telah DiBlokir');
+            redirect(site_url('invoice'));
+        }
+
+        public function diambil($id)
+        {
+            $data=array(
+                'status_pesanan'=>"diambil"
+            );
+            $this->invoice_m->update($id, $data);
+            // $this->session->set_flashdata('message','Supplier telah DiBlokir');
+            redirect(site_url('invoice'));
+        }
+
+
+        public function selesai($id)
+        {
+            $data=array(
+                'status_pesanan'=>"selesai"
+            );
+            $this->invoice_m->update($id, $data);
+            // $this->session->set_flashdata('message','Supplier telah DiBlokir');
+            redirect(site_url('invoice'));
+        }
     }
