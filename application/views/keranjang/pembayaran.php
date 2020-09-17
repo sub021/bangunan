@@ -46,7 +46,7 @@
 
                     <div class=" form-group">
                         <label>No Telepon/hp</label>
-                        <input type="text" name="no_telp" placeholder="Masukkan no telepon/hp anda.." class="form-control">
+                        <input type="text" name="no_telp" placeholder="Masukkan no telepon/hp anda.." class="form-control" value="<?= $this->session->userdata('no_hp')?>">
                     </div>
                     <div class=" form-group">
                         <label>Jasa Antar</label>

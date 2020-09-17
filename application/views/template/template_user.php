@@ -47,17 +47,19 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+      <?php if ($this->session->userdata('nama')) { ?>
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('home/status'); ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Status Transaksi</span></a>
       </li>
+      <?php } ?>
       <?php if($this->session->userdata('id_pengguna')){ ?>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="<?= site_url('auth/logout_user')?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>logout</span></a>
-      </li>
+      </li> -->
       <?php } ?>
 
       

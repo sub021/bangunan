@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 16 Sep 2020 pada 07.27
+-- Generation Time: 17 Sep 2020 pada 16.06
 -- Versi Server: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -41,12 +41,12 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_barang`, `kode_barang`, `nama_barang`, `stok`, `harga_jual`, `gambar`, `created_at`) VALUES
-(6, 'KB0001', 'baja', 98, 10000, NULL, '2020-08-20 16:20:52'),
-(7, 'KB0002', 'paku', 10, 1000, NULL, '2020-08-31 09:45:21'),
+(6, 'KB0001', 'baja', 72, 10000, NULL, '2020-08-20 16:20:52'),
+(7, 'KB0002', 'paku', -1, 1000, NULL, '2020-08-31 09:45:21'),
 (8, 'KB0003', 'semen', 0, 500000, NULL, '2020-09-11 17:46:35'),
 (9, 'KB0004', 'cat tembok', 0, 30000, NULL, '2020-09-11 18:01:56'),
-(10, 'KB0005', 'kalsibut', 0, 25000, NULL, '2020-09-11 19:49:22'),
-(11, 'KB0006', 'sekop', 5, 30000, NULL, '2020-09-11 19:54:09'),
+(10, 'KB0005', 'kalsibut', -1, 25000, NULL, '2020-09-11 19:49:22'),
+(11, 'KB0006', 'sekop', -5, 30000, NULL, '2020-09-11 19:54:09'),
 (12, 'KB0007', 'baja ringan', 0, 500000, '2e0264f1bf0eb68e7a8d69c6ae8e7ada.jpg', '2020-09-13 22:00:13');
 
 -- --------------------------------------------------------
@@ -139,27 +139,23 @@ CREATE TABLE `tb_invoice` (
   `alamat` text,
   `tgl_pesan` varchar(255) DEFAULT NULL,
   `batas_byr` varchar(255) DEFAULT NULL,
-  `jasa` varchar(255) DEFAULT 'tanpa keterangan'
+  `jasa` varchar(255) DEFAULT 'tanpa keterangan',
+  `keterangan` varchar(255) DEFAULT 'tanpa keterangan',
+  `gambar` text,
+  `status_pesanan` varchar(255) NOT NULL DEFAULT 'diproses',
+  `ongkir` varchar(255) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_invoice`
 --
 
-INSERT INTO `tb_invoice` (`id_invoice`, `kode_invoice`, `nama`, `alamat`, `tgl_pesan`, `batas_byr`, `jasa`) VALUES
-(1, 'KI0001', 'user', NULL, '', '', 'ambil'),
-(2, 'KI0002', 'user', NULL, NULL, NULL, 'ambil'),
-(3, 'KI0003', 'user', NULL, NULL, NULL, 'ambil'),
-(4, 'KI0004', 'user', NULL, NULL, NULL, 'ambil'),
-(5, 'KI0005', 'user', NULL, NULL, NULL, 'ambil'),
-(6, 'KI0006', 'user', NULL, NULL, NULL, 'ambil'),
-(7, 'KI0007', 'budi saputra', 'jadlawjdawlkjd', '2020-09-13', '2020-09-14', 'ambil'),
-(8, 'KI0008', 'budi saputra', 'jadlawjdawlkjd', '2020-09-13', '2020-09-14', 'ambil'),
-(9, 'KI0009', 'budi saputra', 'jadlawjdawlkjd', '2020-09-13', '2020-09-14', 'ambil'),
-(10, 'KI0010', 'budi saputra', 'jadlawjdawlkjd', '2020-09-13', '2020-09-14', 'ambil'),
-(11, 'KI0011', 'Ardian Cahya', 'Jl.AMD Komp.Abdi Persada 1', '2020-09-14', '2020-09-15', 'ambil'),
-(12, 'KI0012', 'admin', NULL, NULL, NULL, 'ambil'),
-(13, 'KI0013', 'admin', 'admin', '2020-09-16', '2020-09-17', 'antar');
+INSERT INTO `tb_invoice` (`id_invoice`, `kode_invoice`, `nama`, `alamat`, `tgl_pesan`, `batas_byr`, `jasa`, `keterangan`, `gambar`, `status_pesanan`, `ongkir`) VALUES
+(38, 'KI0001', 'tes', 'user', '2020-09-17', '2020-09-18', 'ambil', '', 'default.jpg', 'disiapkan', '10000'),
+(39, 'KI0002', 'admin', 'user', '2020-09-17', '2020-09-18', 'ambil', '', NULL, 'diproses', NULL),
+(40, 'KI0003', 'user', 'user', '2020-09-17', '2020-09-18', 'ambil', '', NULL, 'disiapkan', NULL),
+(41, 'KI0004', 'user', 'user', '2020-09-17', '2020-09-18', 'ambil', '', NULL, 'diambil', NULL),
+(42, 'KI0005', 'user', 'user', '2020-09-17', '2020-09-18', 'ambil', '', '41252c0c5c66801c0a8ba64e552c869a.png', 'diproses', NULL);
 
 -- --------------------------------------------------------
 
@@ -173,17 +169,20 @@ CREATE TABLE `tb_pelanggan` (
   `password` varchar(255) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `alamat` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'non_konfirmasi'
+  `status` varchar(255) NOT NULL DEFAULT 'non_konfirmasi',
+  `no_hp_pengg` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_pelanggan`
 --
 
-INSERT INTO `tb_pelanggan` (`id_pelanggan`, `username`, `password`, `nama`, `alamat`, `status`) VALUES
-(1, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user', 'user', 'konfirmasi'),
-(2, 'admin', 'admin', 'admin', 'admin\r\n', 'non_konfirmasi'),
-(3, 'kambing', '21232f297a57a5a743894a0e4a801fc3', 'kambing', 'admin\r\nadmin\r\n', 'non_konfirmasi');
+INSERT INTO `tb_pelanggan` (`id_pelanggan`, `username`, `password`, `nama`, `alamat`, `status`, `no_hp_pengg`) VALUES
+(1, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user', 'user', 'konfirmasi', NULL),
+(2, 'admin', 'admin', 'admin', 'admin\r\n', 'non_konfirmasi', NULL),
+(3, 'kambing', '21232f297a57a5a743894a0e4a801fc3', 'kambing', 'admin\r\nadmin\r\n', 'konfirmasi', NULL),
+(4, 'budi', '827ccb0eea8a706c4c34a16891f84e7b', 'budi', 'hbi', 'konfirmasi', NULL),
+(5, 'sub021', '827ccb0eea8a706c4c34a16891f84e7b', 'dody', 'handil', 'konfirmasi', '081347816848');
 
 -- --------------------------------------------------------
 
@@ -210,7 +209,36 @@ INSERT INTO `tb_penjualan` (`id_jual`, `id_barang`, `id_invoice_p`, `jumlah`, `d
 (1, 6, 10, '2', '0', '20000', 'offline', '2020-09-13 21:55:00'),
 (2, 6, 11, '3', '0', '30000', 'online', '2020-09-14 13:04:25'),
 (3, 6, 12, '1', '0', '10000', 'online', '2020-09-14 13:08:01'),
-(4, 6, 13, '1', '0', '10000', 'online', '2020-09-16 13:18:58');
+(4, 6, 13, '1', '0', '10000', 'online', '2020-09-16 13:18:58'),
+(5, 11, 0, '10', '0', '300000', 'online', '2020-09-16 16:58:50'),
+(6, 10, 0, '1', '0', '25000', 'online', '2020-09-16 16:59:52'),
+(7, 7, 0, '1', '0', '1000', 'online', '2020-09-16 17:00:35'),
+(8, 7, 14, '10', '0', '10000', 'offline', '2020-09-16 17:03:02'),
+(9, 6, 15, '1', '0', '10000', 'online', '2020-09-17 11:44:54'),
+(10, 6, 16, '1', '0', '10000', 'online', '2020-09-17 11:47:36'),
+(11, 6, 17, '1', '0', '10000', 'online', '2020-09-17 11:48:46'),
+(12, 6, 0, '1', '0', '10000', 'online', '2020-09-17 11:56:04'),
+(13, 6, 0, '1', '0', '10000', 'online', '2020-09-17 11:57:42'),
+(14, 6, 0, '1', '0', '10000', 'online', '2020-09-17 11:58:23'),
+(15, 6, 18, '1', '0', '10000', 'online', '2020-09-17 11:59:17'),
+(16, 6, 19, '1', '0', '10000', 'online', '2020-09-17 12:00:30'),
+(17, 6, 20, '1', '0', '10000', 'online', '2020-09-17 12:01:55'),
+(18, 6, 21, '1', '0', '10000', 'online', '2020-09-17 12:03:17'),
+(19, 6, 22, '1', '0', '10000', 'online', '2020-09-17 12:05:34'),
+(20, 6, 23, '2', '0', '20000', 'online', '2020-09-17 12:11:44'),
+(21, 6, 25, '1', '0', '10000', 'online', '2020-09-17 12:13:34'),
+(22, 6, 26, '1', '0', '10000', 'online', '2020-09-17 12:18:12'),
+(23, 6, 29, '1', '0', '10000', 'online', '2020-09-17 12:19:25'),
+(24, 6, 30, '1', '0', '10000', 'online', '2020-09-17 12:20:07'),
+(25, 6, 31, '1', '0', '10000', 'online', '2020-09-17 12:22:12'),
+(26, 6, 33, '1', '0', '10000', 'online', '2020-09-17 12:23:47'),
+(27, 6, 34, '1', '0', '10000', 'online', '2020-09-17 12:27:08'),
+(28, 6, 37, '1', '0', '10000', 'online', '2020-09-17 12:31:28'),
+(29, 6, 38, '1', '0', '10000', 'online', '2020-09-17 12:34:39'),
+(30, 6, 39, '1', '0', '10000', 'online', '2020-09-17 12:35:46'),
+(31, 6, 40, '1', '0', '10000', 'online', '2020-09-17 12:36:44'),
+(32, 6, 41, '1', '0', '10000', 'online', '2020-09-17 12:37:57'),
+(33, 6, 42, '1', '0', '10000', 'online', '2020-09-17 12:38:48');
 
 --
 -- Trigger `tb_penjualan`
@@ -384,17 +412,17 @@ ALTER TABLE `tb_barang_masuk`
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `tb_pelanggan`
 --
 ALTER TABLE `tb_pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_penjualan`
 --
 ALTER TABLE `tb_penjualan`
-  MODIFY `id_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `tb_penjualan_online`
 --

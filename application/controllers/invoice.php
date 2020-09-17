@@ -89,4 +89,16 @@ class Invoice extends CI_Controller {
             // $this->session->set_flashdata('message','Supplier telah DiBlokir');
             redirect(site_url('invoice'));
         }
+
+        public function update_invoice()
+        {
+            // $gambar=$this->_uploadImage();
+            $id=$this->input->post('id_invoice');
+            $ongkir=$this->input->post('ongkir');
+            $data=array(
+                "ongkir" =>$ongkir
+            );
+            $this->invoice_m->update($id,$data);
+            redirect(site_url('invoice/'));
+        }
     }

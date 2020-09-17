@@ -32,12 +32,16 @@
                                             <div class="form-group">
                                             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                                                 <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control py-4" id="Password" type="password" name="password" placeholder="Enter password" />
+                                                <input class="form-control py-4" id="Password" type="password" name="password" placeholder="Enter password">
                                             </div>
                                             <div class="form-group">
                                             <!-- <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none"> -->
                                                 <label class="small mb-1" for="inputPassword">Password Konfirmasi</label>
                                                 <input class="form-control py-4" id="Password" type="password" name="pwd_conf" placeholder="Enter password" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress">No Hp</label>
+                                                <input class="form-control py-4" id="username" name="hp" type="text" placeholder="Masukkan No Hp" require>
                                             </div>
                                             <div class="form-group">
                                             <!-- <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none"> -->

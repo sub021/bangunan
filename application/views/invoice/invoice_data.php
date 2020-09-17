@@ -18,6 +18,7 @@
                                 <th >Nama Pemesanan</th>
                                 <th>ket</th>
                                 <th>Status Pesanan</th>
+                                <th>Ongkir</th>
                                 <th >Aksi</th>
  
                             </tr>
@@ -112,10 +113,10 @@
 
 
 
-
+                                <td><?php echo 'Rp '.number_format($data->ongkir);?></td>
                                 <td>
                                  <a href="<?= site_url('invoice/nota/'.$data->id_invoice)?>" class="btn btn-primary btn-xs " target="_blank"><i class="fas fa-print fa-sm"></i></a>
-                                
+                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaledit<?php echo $data->id_invoice;?>">Onkir </button>
                                 </td>
                                 
 
@@ -142,7 +143,38 @@
       <?php echo form_open(base_url('invoice/update_invoice'), 'class="form-horizontal" enctype="multipart/form-data"');  ?> 
       <input type="hidden" class="form-control" name="id_invoice" value="<?= $data->id_invoice?>"></input>
         <div class="form-group">
-        <label> Upload Struk Pembayaran</label>
+        <label> Onkir</label>
+        <input type="text" class="form-control" name="ongkir"></input>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success btn-flat" id="simpan">Update</button>
+      </div>
+      </div>
+      <?php echo form_close( ); ?>
+      
+    </div>
+  </div>
+</div>
+<?php } ?>
+
+
+<!-- onkir -->
+<?php foreach($data_invoice->result()as $data){ ?>
+<div class="modal fade" id="modaledit<?php echo $data->id_invoice;?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <?php echo form_open(base_url('invoice/update_invoice'), 'class="form-horizontal" enctype="multipart/form-data"');  ?> 
+      <input type="hidden" class="form-control" name="id_invoice" value="<?= $data->id_invoice?>"></input>
+        <div class="form-group">
+        <label> Biaya Ongkir</label>
         <input type="file" class="form-control" name="gambar"></input>
         </div>
         <div class="modal-footer">

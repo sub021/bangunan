@@ -31,7 +31,8 @@ class Auth extends CI_Controller {
                 $params = array (
                     'id_pelanggan'=> $row->id_pelanggan,
                     'nama'=>$row->nama,
-                    'alamat'=>$row->alamat
+                    'alamat'=>$row->alamat,
+                    'no_hp'=>$row->no_hp_pengg
                     // 'level' => $row->level
                 );
                  $this->session->set_userdata($params);
@@ -84,7 +85,7 @@ class Auth extends CI_Controller {
         }
         public function logout_user()
         {
-            $params = array ('id_pelanggan');
+            $params = array ('id_pelanggan','nama');
             $this->session->unset_userdata($params);
             redirect('auth/login_user');
         }
@@ -95,7 +96,8 @@ class Auth extends CI_Controller {
 					$data['username'] = $this->input->post('username');
 					$data['alamat'] = $this->input->post('alamat');
 					$data['password'] =md5($this->input->post('password'));
-					$data['nama'] = $this->input->post('nama');
+                    $data['nama'] = $this->input->post('nama');
+                    $data['no_hp_pengg'] = $this->input->post('hp');
 					// $data['alamat'] = $this->input->post('alamt');
 					// $data['hal_yang_diadukan'] = $this->input->post('diadukan');
                     $this->load->model('user_m');
